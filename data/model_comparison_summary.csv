@@ -1,0 +1,6 @@
+Modelo,Acc Train,Acc Test,Brecha (gap),Overfitting OK,Precision,Recall,F1-Score,ROC AUC
+Logistic Regression,0.8609,0.8596,0.0012,✔,0.649,0.895,0.7524,0.9242
+Decision Tree,0.9722,0.9576,0.0147,✔,0.9327,0.8858,0.9087,0.9312
+Random Forest,0.9978,0.9608,0.037,✔,0.9463,0.8858,0.9151,0.9355
+Gradient Boosting,0.9913,0.9554,0.0359,✔,0.9279,0.8813,0.904,0.9362
+RF Optimizado,0.9978,0.9608,0.037,✔,0.9463,0.8858,0.9151,0.9366

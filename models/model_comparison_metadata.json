@@ -1,0 +1,64 @@
+{
+  "dataset": "dataset_clean.csv",
+  "train_size": 3673,
+  "test_size": 919,
+  "models": [
+    {
+      "Modelo": "Logistic Regression",
+      "Acc Train": 0.8609,
+      "Acc Test": 0.8596,
+      "Brecha (gap)": 0.0012,
+      "Overfitting OK": "✔",
+      "Precision": 0.649,
+      "Recall": 0.895,
+      "F1-Score": 0.7524,
+      "ROC AUC": 0.9242
+    },
+    {
+      "Modelo": "Decision Tree",
+      "Acc Train": 0.9722,
+      "Acc Test": 0.9576,
+      "Brecha (gap)": 0.0147,
+      "Overfitting OK": "✔",
+      "Precision": 0.9327,
+      "Recall": 0.8858,
+      "F1-Score": 0.9087,
+      "ROC AUC": 0.9312
+    },
+    {
+      "Modelo": "Random Forest",
+      "Acc Train": 0.9978,
+      "Acc Test": 0.9608,
+      "Brecha (gap)": 0.037,
+      "Overfitting OK": "✔",
+      "Precision": 0.9463,
+      "Recall": 0.8858,
+      "F1-Score": 0.9151,
+      "ROC AUC": 0.9355
+    },
+    {
+      "Modelo": "Gradient Boosting",
+      "Acc Train": 0.9913,
+      "Acc Test": 0.9554,
+      "Brecha (gap)": 0.0359,
+      "Overfitting OK": "✔",
+      "Precision": 0.9279,
+      "Recall": 0.8813,
+      "F1-Score": 0.904,
+      "ROC AUC": 0.9362
+    },
+    {
+      "Modelo": "RF Optimizado",
+      "Acc Train": 0.9978,
+      "Acc Test": 0.9608,
+      "Brecha (gap)": 0.037,
+      "Overfitting OK": "✔",
+      "Precision": 0.9463,
+      "Recall": 0.8858,
+      "F1-Score": 0.9151,
+      "ROC AUC": 0.9366
+    }
+  ],
+  "best_model_by_roc_auc": "RF Optimizado",
+  "best_model_by_f1": "Random Forest"
+}

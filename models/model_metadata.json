@@ -1,0 +1,51 @@
+{
+  "proyecto": "Loan Risk Prediction",
+  "grupo": "Grupo 4",
+  "fecha_export": "2026-06-23 12:40",
+  "modelo": "RandomForestClassifier",
+  "hiperparametros": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "class_weight": "balanced",
+    "criterion": "gini",
+    "max_depth": 20,
+    "max_features": "sqrt",
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "n_estimators": 200,
+    "n_jobs": -1,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "features_entrada": [
+    "Age",
+    "Income",
+    "LoanAmount",
+    "CreditScore",
+    "YearsExperience",
+    "Gender",
+    "Education",
+    "City_Houston",
+    "City_New York",
+    "City_San Francisco",
+    "EmploymentType_Self-Employed",
+    "EmploymentType_Unemployed"
+  ],
+  "metricas_test": {
+    "accuracy": 0.9608,
+    "precision": 0.9463,
+    "recall": 0.8858,
+    "f1_score": 0.9151,
+    "roc_auc": 0.9312
+  },
+  "train_size": 3673,
+  "test_size": 919,
+  "target_balance": {
+    "0_rechazado": 700,
+    "1_aprobado": 219
+  }
+}
