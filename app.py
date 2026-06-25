@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import plotly.express as px
+from datetime import datetime
 from utils import load_production_artifacts, load_available_models, predict_loan
 
 # Configuración de página premium y ancha
@@ -276,8 +277,8 @@ if seccion_activa == "Dashboard de Negocio":
         with kpi1:
             st.markdown(f'<div class="kpi-card-premium"><div class="kpi-label-premium">Solicitudes Analizadas</div><div class="kpi-value-premium">{len(df_filtrado):,}</div></div>', unsafe_allow_html=True)
         with kpi2:
-            # Si tu columna target mapeada en el CSV es 'audience'
-            porc_aprobados = (df_filtrado['audience'] == 1).mean() * 100 if 'audience' in df_filtrado.columns else 0.0
+            # Si tu columna target mapeada en el CSV es 'LoanApproved'
+            porc_aprobados = (df_filtrado['LoanApproved'] == 1).mean() * 100 if 'LoanApproved' in df_filtrado.columns else 0.0
             st.markdown(f'<div class="kpi-card-premium"><div class="kpi-label-premium">% Aprobación</div><div class="kpi-value-premium">{porc_aprobados:.1f}%</div></div>', unsafe_allow_html=True)
         with kpi3:
             st.markdown(f'<div class="kpi-card-premium"><div class="kpi-label-premium">Variables de Entrada</div><div class="kpi-value-premium">{len(df_filtrado.columns)}</div></div>', unsafe_allow_html=True)
