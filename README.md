@@ -1,143 +1,219 @@
-# Proyecto de Clasificación — Predicción de Aprobación de Préstamos (Loan Risk Prediction)
+# Production-Ready Loan Risk Prediction: End-to-End MLOps Solution
 
-## 📝 Introducción y Objetivos
-Este proyecto aborda un problema de **clasificación binaria**: predecir si una solicitud de préstamo será aprobada (`1`) o rechazada (`0`) a partir de las características socioeconómicas del solicitante. 
+[![GitHub Actions CI/CD](https://img.shields.io/badge/CI/CD-GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com)
+[![Docker Hub Registry](https://img.shields.io/badge/Docker%20Hub-Published-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com)
+[![Deployed to Render](https://img.shields.io/badge/Deploy-Render-4338ca?style=for-the-badge&logo=render&logoColor=white)](https://tu-enlace-de-render.com)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
 
-El objetivo final es doble:
-* **Analítico:** Construir, comparar y optimizar varios modelos de clasificación, manteniendo el *overfitting* por debajo del **5%** (requisito central del proyecto).
-* **Productivo:** Dejar el modelo final exportado y listo para ser consumido por una aplicación web en **Streamlit** que reciba los datos de un cliente nuevo y devuelva la predicción en tiempo real, junto con otros componentes avanzados (validación cruzada, tuning de hiperparámetros, sistema de feedback, ingesta de nuevos datos, dockerización, base de datos y tests unitarios).
+> **Automated enterprise-grade solution for credit risk assessment in financial lending, deployed through a robust and decoupled MLOps architecture.**
 
----
-
-## 📊 Dataset y Variables
-El proyecto utiliza un conjunto de datos que cuenta con **5.000 solicitudes de préstamo**, pasando por las siguientes etapas de almacenamiento:
-* `data/loan_risk_prediction_dataset.csv` (Dataset original)
-* `data/dataset_clean.csv` (Dataset limpio tras el tratamiento de outliers)
-
-### Características del Dataset:
-
-| Columna | Descripción |
-| :--- | :--- |
-| **Age** | Edad del solicitante |
-| **Income** | Ingresos anuales (USD) |
-| **LoanAmount** | Importe del préstamo solicitado (USD) |
-| **CreditScore** | Puntuación crediticia (300-850) |
-| **YearsExperience** | Años de experiencia laboral |
-| **Gender** | Género |
-| **Education** | Nivel educativo |
-| **City** | Ciudad de residencia |
-| **EmploymentType** | Situación laboral |
-| **LoanApproved** | **Variable objetivo:** 1 = aprobado, 0 = rechazado |
+⚡ **[View Live Demo on Render](https://your-render-link.com)**
 
 ---
 
-## 🛠️ Estructura del Ciclo de Vida del Proyecto
+## 1. Project Overview
 
-### PARTE 01: Análisis y Preparación
-* **FASE 1 - Carga y Auditoría de Datos:** Inspección inicial de las dimensiones, tipos de datos y verificación de la calidad de la información.
-* **FASE 2 - Limpieza de Datos y Outliers:** Identificación y tratamiento de valores atípicos o nulos para asegurar la estabilidad de los algoritmos.
-* **FASE 3 - EDA Multivariado:** Análisis Exploratorio de Datos enfocado en las correlaciones con el objetivo de negocio. Se identificó una fuerte correlación positiva con `CreditScore` e `Income`, y un impacto drástico de `EmploymentType` (donde los desempleados presentan una tasa de aprobación de apenas ~3% frente al ~33% de asalariados o autónomos).
+Financial institutions need reliable methods to assess the risk associated with loan applications. The objective of this project is to develop and compare multiple machine learning classification models capable of predicting whether a loan applicant represents a high or low credit risk.
 
-### PARTE 02: Modelado y Puesta en Producción
-* **FASE 4 - Train/Test Split y Pipeline de Preprocesado:** División estratificada 80/20 (preservando la proporción original de la variable objetivo: 77% / 23%). Construcción de un `ColumnTransformer` que aplica codificación (*One-Hot Encoding* para variables nominales y *Label Encoding* para ordinales como `Education`) acoplado con un escalado estándar (`StandardScaler`) para evitar el *data leakage*.
-* **FASE 5 - Comparativa de Modelos de Clasificación:** Evaluación inicial empleando algoritmos como `LogisticRegression`, `DecisionTreeClassifier`, `RandomForestClassifier` y `GradientBoostingClassifier`.
-* **FASE 6 - Validación Cruzada y Optimización de Hiperparámetros:** Afinación fina automatizada mediante la librería de optimización **Optuna** junto con `StratifiedKFold`.
-* **FASE 7 - Modelo Final y Control de Overfitting:** Selección del modelo óptimo asegurando estrictamente que el diferencial de rendimiento entre entrenamiento y prueba no supere el límite exigido del **5%**.
-* **FASE 8 - Importancia de Variables:** Extracción e interpretación de los pesos de las características para auditoría del modelo.
-* **FASE 9 - Exportación del Modelo y Metadata:** Almacenamiento del Pipeline final preprocesado y entrenado mediante la librería `joblib` en la carpeta `models/`.
-* **FASE 10 - Sistema de Feedback e Ingesta de Datos Nuevos:** Diseño de la lógica para el reentrenamiento del modelo y la captura de nuevas muestras ingresadas desde la interfaz de usuario.
+Unlike a traditional academic machine learning project, this solution follows a production-oriented workflow that includes model deployment, containerization, cloud hosting, and CI/CD automation.
+
+The project includes:
+
+- Exploratory Data Analysis (EDA)
+- Data preprocessing and feature engineering
+- Training and evaluation of multiple classification models
+- Model comparison and selection
+- Interactive Streamlit dashboard
+- Docker containerization
+- Automated CI/CD pipeline with GitHub Actions
+- Docker Hub integration
+- Cloud deployment using Render
+---
+
+## 2. Solution Features (Advanced MLOps Architecture)
+
+Unlike traditional deployment approaches, this project implements a decoupled cloud production workflow powered by **CI/CD**, optimizing both time and infrastructure resources.
+
+* **Production-Grade Machine Learning:**
+    * **Data Leakage Prevention:** Strict use of Scikit-Learn `Pipelines` to encapsulate mathematical transformations and preprocessing steps.
+    * **Bayesian Optimization:** Automated hyperparameter tuning using `Optuna`.
+    * **Stratified Cross-Validation:** Comprehensive evaluation strategy to ensure model stability and robustness.
+* **Automated CI/CD Pipeline (GitHub Actions ➡️ Docker Hub ➡️ Render):**
+    * **Efficient Build Process:** Whenever a `git push` is made to the `main` branch, GitHub Actions provisions a virtual environment, reads the `Dockerfile`, builds the image, and installs dependencies using GitHub's cloud infrastructure.
+    * **Centralized Registry:** The packaged image is automatically published to a Docker Hub repository using securely managed credentials (`Secrets`).
+    * **Instant Deployment:** Render detects the updated image, downloads the pre-built artifact from Docker Hub, and deploys it within seconds, eliminating build-time memory consumption on the production server.
+* **Feedback Loop System:** Design and production implementation of a loop that securely captures and stores new predictions and user inputs, enabling future monitoring of **Data Drift** and model retraining strategies.
 
 ---
 
-## 📁 Estructura del Repositorio
-El pipeline del proyecto está configurado para generar y organizar de forma automática los siguientes directorios:
+## 3. Technology Stack
 
-```plaintext
+* **Core Data Science & Machine Learning:** Python, Scikit-Learn, Optuna, Pandas, NumPy, Seaborn, Matplotlib.
+* **MLOps Infrastructure:** Docker, Docker Compose, GitHub Actions, Docker Hub, Render.
+* **User Interface:** Streamlit.
+
+---
+
+## 4. Project Structure
+
+El repositorio sigue un estándar profesional y modularizado para facilitar el mantenimiento del software:
+
+```text
+Loan_Risk_Prediction_ML/
 │
-├── 📁 assets/                                        # Recursos, imágenes...
+├── .github/
+│   └── workflows/
+│       └── docker-publish.yml
 │
-├── 📁 data/
-│   ├── dataset_clean.csv                              # Tu dataset limpio histórico principal
-│   ├──...  
-│   └── feedback_loans.csv                             # El CSV de logs operativos (Fase 10)
+├── assets/
+├── data/
+├── models/
+├── notebooks/
+├── scripts/
+├── utils/
 │
-├── 📁 models/
-│   ├── best_model.pkl                                 # Modelo definitivo en producción
-│   ├── model_metadata.json                            # Hiperparámetros, métricas y features del framework
-│   ├──...
-│   └── preprocessor.pkl                               # Transformaciones/Scalers si van desacoplados
-│
-├── 📁 scripts/
-│   └── export_model_comparison.py                     # Script de ingeniería para generar el cuadro comparativo
-│
-├── 📁 utils/
-│   ├── __init__.py
-│   └── predictor.py                                   # Funciones lógicas de carga e inferencia (desacopladas)
-│
-├── 📄 .dockerignore                                   # Archivos excluidos del contexto de construcción de Docker
-├── 📄 .gitignore                                      # Para evitar subir archivos .pkl o .csv pesados a GitHub
-├── 📄 app.py                                          # Tu interfaz de usuario e interacción en Streamlit
-├── 📄 DA_project_classification_parte01_Grupo4.ipynb  # Cuadernos interactivos de análisis y desarrollo
-├── 📄 DA_project_classification_parte02_Grupo4.ipynb  # Cuadernos interactivos de análisis y desarrollo
-├── 📄 docker-compose.yml                              # Orquestación local multi-contenedor del ecosistema
-├── 📄 Dockerfile                                      # Receta de construcción de la imagen de contenedor del proyecto
-├── 📄 LICENSE
-├── 📄 README.md                                       # Documentación técnica del proyecto
-└── 📄 requirements.txt                                # Librerías necesarias (Streamlit, Pandas, Joblib...)
+├── app.py
+├── Dockerfile
+├── requirements.txt
+├── .dockerignore
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
 
+---
 
-## ⚙️ Estructura del Equipo
+## Docker Containerization
 
-![Tablero Kanban](assets/Tablero%20Kanban.png)
+The application was containerized using Docker to ensure portability, consistency, and reproducibility across different environments.
 
-Para garantizar un desarrollo ágil, coordinado y eficiente en esta fase de productivización y despliegue, el equipo ha implementado un marco de trabajo basado en la metodología **Kanban**. A través de un tablero digital organizado en sprints dinámicos, gestionamos el ciclo de vida de cada tarea mediante los siguientes estados:
+### Build Docker Image
 
-* **Backlog / Por hacer (To Do):** Listado priorizado de requisitos, refactorización de código y tareas de despliegue pendientes.
-* **En proceso (In Progress):** Tareas activas asignadas a los miembros del equipo para evitar la sobrecarga de trabajo en paralelo (WIP).
-* **En revisión / Testing (In Review):** Código en fase de control de calidad, pruebas locales de la aplicación y revisión de *Pull Requests* (PRs).
-* **Finalizado (Done):** Funcionalidades e integraciones totalmente completadas, validadas y listas para su fusión en la rama principal.
+```bash
+docker build -t loan-risk-prediction .
+```
 
-> 💡 **Nota del equipo:** Esta estructura, sumada a una comunicación constante, nos permite mantener una visibilidad total sobre los cuellos de botella. Al afrontar las incidencias y errores como un bloque unitario, aseguramos soluciones más rápidas, la continuidad del flujo de trabajo y un incremento del producto completamente estable en cada iteración.
+### Run Locally
+
+```bash
+docker run -p 8501:8501 loan-risk-prediction
+```
+
+### Benefits
+
+- Environment consistency
+- Simplified deployment
+- Reproducible builds
+- Easier cloud integration
 
 ---
 
-## 🚀 Requisitos e Instalación
+## CI/CD Pipeline
 
-El entorno del proyecto utiliza principalmente las siguientes librerías de Python:
+A fully automated CI/CD workflow was implemented using GitHub Actions.
 
-* **pandas** y **numpy** para la manipulación de datos.
-* **scikit-learn** para la construcción de pipelines, preprocesamiento y algoritmos de Machine Learning.
-* **optuna** para la optimización de hiperparámetros.
-* **seaborn** y **matplotlib** para la generación de gráficos del EDA y evaluación.
-* **streamlit** para el despliegue de la interfaz de usuario.
-* **joblib** para la persistencia del modelo.
+### Pipeline Process
+
+1. Code is pushed to GitHub
+2. GitHub Actions workflow is triggered
+3. Docker image is built automatically
+4. Image is published to Docker Hub
+5. Updated image becomes available for deployment
+
+### GitHub Secrets Configuration
+
+Sensitive credentials are securely managed using GitHub Secrets:
+
+- `DOCKER_USERNAME`
+- `DOCKER_TOKEN`
+
+This prevents credentials from being exposed in the repository.
 
 ---
-## 🐳 Cómo Ejecutar el Proyecto con Docker
 
-Para facilitar el despliegue y asegurar que el entorno funcione exactamente igual en cualquier máquina, el proyecto está completamente contenedorizado. Sigue estos pasos para ponerlo en marcha:
+## Docker Hub Integration
 
-### Requisitos Previos
-* Tener instalado **Docker** y **Docker Compose** en tu sistema.
+The Docker image is automatically published to Docker Hub whenever changes are pushed to the repository.
 
-### Instrucciones de Ejecución
+### Benefits
 
-1. **Construir y levantar los contenedores:**
-   Ejecuta el siguiente comando en la raíz del proyecto para descargar las imágenes necesarias, construir el contenedor de la aplicación y levantarlo en segundo plano (`-d`):
-   ```bash
-   docker compose up --build -d```
-2. **Acceder a la aplicación:**
-   Una vez que el proceso termine con éxito, abre tu navegador web e ingresa a la siguiente dirección:
-   ```http://localhost:8501```
-3. **Detener el entorno:**
-   Si deseas parar y eliminar los contenedores que se están ejecutando, utiliza el comando:
-   ```bash
-   docker compose down``` 
+- Versioned container images
+- Centralized image registry
+- Simplified deployment workflow
+- Automated artifact management
+
+Docker Hub Repository:
+
+```text
+nsfacila/loan-app
+```
+
 ---
 
-## 👥 Autores
-* Sonia Navarro
-* Manuel Macarro
-* Noelia Sánchez
-* Irene Condado
+## Cloud Deployment with Render
+
+The application is deployed on Render using the Docker image published in Docker Hub.
+
+### Deployment Architecture
+
+```text
+GitHub
+   │
+   ▼
+GitHub Actions
+   │
+   ▼
+Docker Build
+   │
+   ▼
+Docker Hub
+   │
+   ▼
+Render
+   │
+   ▼
+Production Application
+```
+
+### Production URL
+
+https://credit-loan-app.onrender.com/
+
+### Deployment Benefits
+
+- Automated updates
+- Scalable hosting
+- Simplified infrastructure management
+- Fast deployment workflow
+
+---
+
+## Skills Demonstrated
+
+This project demonstrates practical experience in:
+
+- Machine Learning Classification
+- Data Preprocessing
+- Feature Engineering
+- Model Evaluation
+- Streamlit Development
+- Docker Containerization
+- Docker Hub Integration
+- GitHub Actions
+- CI/CD Automation
+- Cloud Deployment
+- MLOps Fundamentals
+- Git & GitHub Best Practices
+
+---
+
+## 👩‍💻 Author
+
+**Noelia Sánchez**
+
+Aspiring Data Analyst | Machine Learning Enthusiast | Business Intelligence
+
+📌 GitHub: https://github.com/nsfacila
+
+---
+
