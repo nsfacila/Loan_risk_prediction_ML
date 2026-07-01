@@ -211,7 +211,7 @@ This project demonstrates practical experience in:
 
 **Noelia Sánchez**
 
-Aspiring Data Analyst | Machine Learning Enthusiast | Business Intelligence
+Data Analyst | Machine Learning | Business Intelligence
 
 📌 GitHub: https://github.com/nsfacila
 
