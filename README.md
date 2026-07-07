@@ -207,7 +207,7 @@ This project demonstrates practical experience in:
 
 ---
 
-## 👥 Project Team
+## Project Team
 
 This project was developed collaboratively by several Data Analytics Bootcamp participants.
 
