@@ -207,13 +207,20 @@ This project demonstrates practical experience in:
 
 ---
 
-## 👩‍💻 Author
+## 👥 Project Team
+
+This project was developed collaboratively by several Data Analytics Bootcamp participants.
+
+### Repository Maintainer
 
 **Noelia Sánchez**
 
+📌 GitHub: https://github.com/nsfacila
+
 Data Analyst | Machine Learning | Business Intelligence
 
-📌 GitHub: https://github.com/nsfacila
+For the complete list of project contributors, please refer to the GitHub Contributors section.
+
 
 ---
 
