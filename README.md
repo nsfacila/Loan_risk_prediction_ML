@@ -7,7 +7,7 @@
 
 > **Automated enterprise-grade solution for credit risk assessment in financial lending, deployed through a robust and decoupled MLOps architecture.**
 
-⚡ **[View Live Demo on Render](https://your-render-link.com)**
+⚡ **[View Live Demo on Render](https://credit-loan-app.onrender.com/)**
 
 ---
 
